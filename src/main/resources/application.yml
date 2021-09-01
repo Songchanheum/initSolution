@@ -1,0 +1,46 @@
+spring:
+    profiles: 
+        active : local
+    mvc:
+        view:
+            prefix : /WEB-INF/jsp/
+            suffix : .jsp
+mybatis:
+    configuration:
+        map-underscore-to-camel-case : true
+        jdbc-type-for-null : VARCHAR
+    mapper-locations : mapper/*.xml
+    type-aliases-package : com.project.testProject.util
+
+---
+spring:
+    profiles:
+        local
+    main:
+        banner-mode : off
+    jpa:
+        database-platform : org.hibernate.dialect.PostgreSQLDialect
+        hibernate:
+            ddl-auto : none
+        show-sql: true
+        properties:
+            hibernate.default_batch_fetch_size: 1000
+            hibernate.globally_quoted_identifiers : true
+            javax.persistence.sharedCache.mode: ENABLE_SELECTIVE
+            hibernate.format_sql: true # 형식화된 sql 문을 보여준다. Beautifier 기능이라고 생각하면 된다
+            hibernate.enable_lazy_load_no_trans: true
+
+    datasource:
+        url : jdbc:postgresql://ecoflagdev.iptime.org:18432/uwp
+        username : postgres
+        password : ecoflag123$
+        driver-class-name : org.postgresql.Driver
+        
+        hikari:
+            connection-timeout : 60000
+            maximum-pool-size : 2
+    batch:
+        initialize-schema : always
+server:
+    port : 9999
+    servlet.context-path: /project
