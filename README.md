@@ -20,3 +20,6 @@
  - Client 실행
  
  ``` $ yarn start ```
+ 
+ 
+  *추후 fontend source build하여 server에 담아 배포필요
